@@ -78,3 +78,33 @@ void linked_list_append(linked_list* list, int new_data){
 
     return;
 }
+
+void linked_list_remove_last(linked_list* list){
+    node* curr_node = list->head;
+    node* prev_node = NULL;
+    
+    if(curr_node == NULL){ // no need to remove last node as no nodes are in the list
+        return;
+    }
+
+    while(curr_node->next != NULL){ // iterate through list to find current tails and node before tail
+        prev_node = curr_node;
+        curr_node = curr_node->next;
+    }
+ 
+    if(prev_node == NULL){ // if the current node is the only node in the list
+        list->head = NULL; // need to remove dangling pointers from head and tail
+        list->tail = NULL;
+    }
+    else{
+        list->tail = prev_node; // setting previous node to new tail
+
+        prev_node->next = NULL; // remove dangling pointer at new tail
+    }
+
+    free(curr_node); // delete current node as no longer needed
+
+    list->size--;
+
+    return;
+}

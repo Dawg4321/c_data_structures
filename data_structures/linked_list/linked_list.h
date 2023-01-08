@@ -27,4 +27,6 @@ void linked_list_pop(linked_list* list); // removes first element in the linked 
 
 void linked_list_append(linked_list* list, int new_data); // adds element to the end of the linked list
 
+void linked_list_remove_last(linked_list* list); // removes last element in the linked list
+
 #endif

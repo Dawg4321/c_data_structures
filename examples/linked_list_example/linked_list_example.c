@@ -18,6 +18,7 @@ int main(){
     linked_list_pop(&my_list);
     linked_list_pop(&my_list);
     linked_list_append(&my_list, 5);
+    linked_list_remove_last(&my_list);
 
     linked_list_print(my_list); 
 }
