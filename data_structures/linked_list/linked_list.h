@@ -23,7 +23,7 @@ void linked_list_print(linked_list list); // prints linked list data
 
 void linked_list_push(linked_list* list, int new_data); // pushes new element to top of the linked list
 
-void linked_list_pop(linked_list* list); // removes first element in the linked list
+int linked_list_pop(linked_list* list); // removes first element in the linked list
 
 void linked_list_append(linked_list* list, int new_data); // adds element to the end of the linked list
 

@@ -42,9 +42,16 @@ void linked_list_push(linked_list* list, int new_data){
     return;
 }
 
-void linked_list_pop(linked_list* list){
+int linked_list_pop(linked_list* list){
+
+    if(list->head = NULL){ // no need to attempt pop if no nodes are in the list
+        return 0;
+    }
+
     node* new_head = list->head->next; // storing new head before deleting current head
     
+    int ret_data = list->head->data; // getting head data before deallocation
+
     free(list->head); // deallocate memory of current head
     
     list->head = new_head; // replace old head with new head
@@ -55,7 +62,7 @@ void linked_list_pop(linked_list* list){
 
     list->size--;
 
-    return;
+    return ret_data;
 }
 
 void linked_list_append(linked_list* list, int new_data){
@@ -68,7 +75,7 @@ void linked_list_append(linked_list* list, int new_data){
         list->tail->next = new_node; // setting new next value of the previous tail node
     }
 
-    list->tail = new_node;
+    list->tail = new_node; // setting new list tail to new node
 
     if(list->head == NULL){ // if there is currently no head, new node must be the new head
         list->head = new_node;
@@ -102,7 +109,7 @@ void linked_list_remove_last(linked_list* list){
         prev_node->next = NULL; // remove dangling pointer at new tail
     }
 
-    free(curr_node); // delete current node as no longer needed
+    free(curr_node); // deallocate current node as no longer needed
 
     list->size--;
 
