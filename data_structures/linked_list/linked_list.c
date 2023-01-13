@@ -100,6 +100,25 @@ void linked_list_remove_last(linked_list* list){
     return;
 }
 
+void linked_list_reverse(linked_list* list){
+    node* prev_node = NULL;
+    node* curr_node = list->head;
+    node* next_node;
+
+    list->tail = curr_node;
+    
+    while(next_node != NULL){
+        next_node = curr_node->next;
+        curr_node->next = prev_node;
+        prev_node = curr_node;
+        curr_node = next_node;
+    }
+
+    list->head = prev_node;
+
+    return;
+}
+
 void linked_list_print(linked_list list){
     
     printf("*** LINKED LIST PRINTOUT ***\n");
