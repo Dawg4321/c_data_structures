@@ -47,6 +47,38 @@ void linked_list_append(linked_list* list, int new_data){
     return;
 }
 
+void linked_list_append_n_from_front(linked_list* list, int new_data, unsigned int n){
+    
+    if(list->size < n){ // can't append to list as n is larger than the total nodes in the list
+        return;
+    }
+    else if(n == list->size){ // if n == size, need to add new tail using append
+        printf("bruch");
+        linked_list_append(list, new_data);
+        return;
+    }
+    else if(n == 0){ // if n == 0, need to add element to front of list
+        printf("nutz\n");
+        linked_list_append(list, new_data);
+        return;
+    }
+
+    node* curr_node = malloc(sizeof(node)); // node to add to list
+    curr_node->data = new_data;
+
+    node* prev_node = list->head; // finding node to append after
+    for(unsigned int i = 1; i < n ; i++){ // i = 1 as node is added after nth element starting at 1
+        prev_node = prev_node->next;
+    }
+
+    curr_node->next = prev_node->next; // inserting node
+    prev_node->next = curr_node;
+
+    list->size++;
+
+    return;
+}
+
 int linked_list_pop(linked_list* list){
 
     if(list->head = NULL){ // no need to attempt pop if no nodes are in the list
