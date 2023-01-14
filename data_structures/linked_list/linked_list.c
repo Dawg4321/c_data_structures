@@ -101,20 +101,22 @@ void linked_list_remove_last(linked_list* list){
 }
 
 void linked_list_reverse(linked_list* list){
-    node* prev_node = NULL;
+    node* prev_node = NULL; // prev node = null as tail of list points to null
     node* curr_node = list->head;
     node* next_node;
 
-    list->tail = curr_node;
+    list->tail = curr_node; // setting previous head to tail
     
-    while(next_node != NULL){
-        next_node = curr_node->next;
-        curr_node->next = prev_node;
+    while(next_node != NULL){ // iterate through list until at end
+        next_node = curr_node->next; // saving next node before reversing direction of curr_node->next
+
+        curr_node->next = prev_node; // reversing direction of curr_node->next
+
         prev_node = curr_node;
         curr_node = next_node;
     }
 
-    list->head = prev_node;
+    list->head = prev_node; // setting previous tail to head
 
     return;
 }
