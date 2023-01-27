@@ -10,10 +10,11 @@ typedef struct{
 
 }vector;
 
-void vector_init(vector* vec); // vector init functions
+void vector_init(vector* vec); // vector init function
 void vector_deinit(vector* vec); // freeing allocated vector memory
 
-void vector_append(vector* vec, int data); // appends data to end of the vector
+void vector_push_back(vector* vec, int data); // appends data to end of the vector
+void vector_pop_back(vector* vec); // removes last element in vector
 
 void vector_print(vector vec); // prints vector data
 

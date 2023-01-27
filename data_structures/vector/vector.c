@@ -13,7 +13,7 @@ void vector_init(vector* vec){
     return;
 } 
 
-void vector_append(vector* vec, int data){
+void vector_push_back(vector* vec, int data){
     if(vec->size == vec->allocated_size){
         vec->array = (VECTOR_DATA_TYPE*)realloc(vec->array, (vec->allocated_size + VECTOR_ALLOC_SIZE)*sizeof(VECTOR_DATA_TYPE));
         vec->allocated_size = vec->allocated_size + VECTOR_ALLOC_SIZE;
@@ -21,6 +21,21 @@ void vector_append(vector* vec, int data){
     
     vec->array[vec->size] = data;
     vec->size++;
+
+    return;
+}
+
+void vector_pop_back(vector* vec){
+    if(vec->size == 0){
+        return;
+    }
+
+    vec->size--;
+
+    if(vec->allocated_size - vec->size > VECTOR_ALLOC_SIZE && vec->allocated_size != VECTOR_ALLOC_SIZE){
+        vec->array = (VECTOR_DATA_TYPE*)realloc(vec->array, (vec->allocated_size - VECTOR_ALLOC_SIZE)*sizeof(VECTOR_DATA_TYPE));
+        vec->allocated_size = vec->allocated_size - VECTOR_ALLOC_SIZE;
+    }
 
     return;
 }
